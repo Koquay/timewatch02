@@ -1,0 +1,113 @@
+<section id="col-left">
+  <h5>REFINE SEARCH</h5>
+  <hr />
+  <div class="row">
+    <div class="col">
+      <h6 class="font-weight-bold">Brand</h6>
+      <ul class="list-unstyled">
+        <li *ngFor="let brand of brands">
+          <input
+            type="checkbox"
+            class="mr-1"
+            (change)="handleBrandChange(brand)"
+            [(ngModel)]="brand.checked"
+          />
+          <label>{{brand.name}}</label>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="row mt-2">
+    <div class="col">
+      <h6 class="font-weight-bold">Price</h6>
+      <ul class="list-unstyled">
+        <li class="d-block" *ngFor="let price of prices">
+          <input
+            type="checkbox"
+            class="mr-1"
+            (change)="handlePricesRangeChange(price)"
+            [(ngModel)]="price.checked"
+          />
+          <label>{{price.name}}</label>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="row mt-2">
+    <div class="col">
+      <h6 class="font-weight-bold">Color</h6>
+      <ul class="list-unstyled">
+        <li *ngFor="let color of colors">
+          <input
+            type="checkbox"
+            class="mr-1"
+            (change)="handleColorChange(color)"
+            [(ngModel)]="color.checked"
+          />
+          <label>{{color.name}}</label>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col">
+      <h6 class="font-weight-bold">Size</h6>
+      <ul class="list-unstyled">
+        <li><input type="checkbox" class="mr-1" /><label>Large</label></li>
+        <li><input type="checkbox" class="mr-1" /><label>Medium</label></li>
+        <li><input type="checkbox" class="mr-1" /><label>Small</label></li>
+      </ul>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col">
+      <button class="btn btn-primary w-100" id="refine-btn" type="button">
+        RFINE SEARCH
+      </button>
+    </div>
+  </div>
+  <div class="row mt-4">
+    <div class="col">
+      <img class="img-fluid" src="assets/img/LeftBanner.jpg" />
+    </div>
+  </div>
+  <div class="row mt-5">
+    <div class="col">
+      <h5>SPECIALS</h5>
+      <hr />
+      <div class="row mb-3">
+        <div class="col-5">
+          <img class="img-fluid" src="assets/img/5product50x59.jpg" />
+        </div>
+        <div class="col">
+          <span class="d-block">Lodesta</span
+          ><span class="d-block font-weight-bold">$258</span
+          ><a href="#">Add to Cart</a>
+        </div>
+      </div>
+      <div class="row mb-3">
+        <div class="col-5">
+          <img class="img-fluid" src="assets/img/1product50x59.jpg" />
+        </div>
+        <div class="col">
+          <span class="d-block">Lodesta</span
+          ><span class="d-block font-weight-bold">$258</span
+          ><a href="#">Add to Cart</a>
+        </div>
+      </div>
+      <div class="row mb-3">
+        <div class="col-5">
+          <img class="img-fluid" src="assets/img/4product50x59.jpg" />
+        </div>
+        <div class="col">
+          <span class="d-block">Lodesta</span
+          ><span class="d-block font-weight-bold">$258</span
+          ><a href="#">Add to Cart</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

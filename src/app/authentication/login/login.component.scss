@@ -1,0 +1,18 @@
+.loginForm {
+  padding-top: 2rem;
+  .button {
+    background: black;
+    text-transform: uppercase;
+    min-width: 15rem;
+    font-weight: bold;
+    border-radius: 0;
+  }
+
+  .register {
+    color: blue;
+  }
+
+  @media (min-width: 768px) {
+    // padding-top: 3rem;
+  }
+}

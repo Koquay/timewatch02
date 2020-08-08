@@ -1,1 +1,36 @@
-/* You can add global styles to this file, and also import other style files */
+$primary: #ef5656;
+
+.c-red {
+  color: red;
+}
+
+a {
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.section {
+  margin-top: 6rem;
+}
+
+.star {
+  font-size: 1.5rem;
+  color: rgb(204, 204, 204);
+}
+.star2 {
+  font-size: 1.5rem;
+  color: rgb(204, 204, 204);
+}
+.filled {
+  color: rgb(255, 152, 0);
+}
+.bad {
+  color: #deb0b0;
+}
+.filled.bad {
+  color: #ff1e1e;
+}
+
+.strike-through {
+  text-decoration: line-through;
+}

@@ -1,0 +1,15 @@
+<div class="row" *ngIf="sortOptions.length">
+  <div class="col">
+    <span class="mr-1">Sort by:</span>
+    <select
+      class="form-control"
+      style="width: 15rem; display: inline-block;"
+      (change)="changeOption($event.target.value)"
+      [(ngModel)]="selectedOption"
+    >
+      <option *ngFor="let option of sortOptions" [value]="option.id"
+        >{{option.title}}</option
+      >
+    </select>
+  </div>
+</div>

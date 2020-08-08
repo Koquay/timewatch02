@@ -1,0 +1,37 @@
+.product-description {
+  .product-name {
+    text-transform: capitalize;
+  }
+
+  .rating {
+    i {
+      color: #fbb03b;
+      font-size: 0.8rem;
+    }
+  }
+
+  .description {
+    color: rgb(128, 128, 128);
+  }
+
+  .quantity {
+    width: 4rem;
+    border: 1px solid rgb(128, 128, 128);
+  }
+
+  .actions {
+    .actionButton {
+      background: #000;
+      border: none;
+      border-radius: 0;
+
+      i {
+        color: white;
+      }
+    }
+
+    #add-to-cart-btn {
+      font-size: 0.8rem;
+    }
+  }
+}

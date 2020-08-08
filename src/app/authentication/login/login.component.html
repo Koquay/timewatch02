@@ -1,0 +1,63 @@
+<app-header></app-header>
+<div class="container loginForm">
+  <form>
+    <div class="form-row d-flex d-lg-flex justify-content-center">
+      <div class="col-12 d-lg-flex col-md-6">
+        <label class="col-form-label">Email</label>
+      </div>
+    </div>
+    <div class="form-row d-flex d-lg-flex justify-content-center mb-2">
+      <div class="col-12 col-md-6">
+        <input
+          class="form-control"
+          type="text"
+          autofocus=""
+          [(ngModel)]="loginData.email"
+          #email="ngModel"
+          required
+          name="email"
+        />
+        <div *ngIf="email.invalid && (email.dirty || email.touched)">
+          <div *ngIf="email.errors.required" class="c-red">
+            Email is required
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="form-row d-flex d-lg-flex justify-content-center">
+      <div class="col-12 d-lg-flex col-md-6">
+        <label class="col-form-label">Password</label>
+      </div>
+    </div>
+    <div class="form-row d-flex d-lg-flex justify-content-center mb-2">
+      <div class="col-12 col-md-6">
+        <input
+          class="form-control"
+          type="password"
+          required
+          [(ngModel)]="loginData.password"
+          #password="ngModel"
+          name="password"
+        />
+        <div *ngIf="password.invalid && (password.dirty || password.touched)">
+          <div *ngIf="password.errors.required" class="c-red">
+            Password is required
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="form-row d-flex d-lg-flex justify-content-center mt-4">
+      <div class="col-12 d-lg-flex col-md-6">
+        <button class="btn btn-primary button" type="button" (click)="login()">
+          Login
+        </button>
+      </div>
+    </div>
+    <div class="form-row d-flex d-lg-flex justify-content-center mt-2">
+      <div class="col-12 d-lg-flex col-md-6">
+        <a class="register" href="#">REGISTER HERE</a>
+      </div>
+    </div>
+  </form>
+</div>
+<app-footer></app-footer>

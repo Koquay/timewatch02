@@ -1,0 +1,74 @@
+<div class="col">
+  <h5 class="font-weight-bold">Related Products</h5>
+  <div class="row mt-3 d-flex justify-content-center">
+    <div
+      class="col-12 col-md-6 col-lg-3 item"
+      *ngFor="let product of relatedProducts"
+    >
+      <div class="card">
+        <img
+          class="img-fluid card-img-top w-100 d-block"
+          src="assets/img/{{product.images[0]}}"
+        />
+        <div class="card-body px-1 py-1">
+          <div>
+            <a class="text-left d-block" href="#">{{product.name}}</a>
+          </div>
+          <div class="d-flex justify-content-between">
+            <span
+              >{{product.price | currency:'USD':'symbol-narrow':'1.0-0'}}</span
+            >
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- <div class="col-12 col-md-6 col-lg-3 item">
+      <div class="card">
+        <img
+          class="img-fluid card-img-top w-100 d-block"
+          src="assets/img/pro-3-220x294.jpg"
+        />
+        <div class="card-body px-1 py-1">
+          <div>
+            <a class="text-left d-block" href="#">Lorem Ipsum Dolor</a>
+          </div>
+          <div class="d-flex justify-content-between">
+            <span>$130</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-12 col-md-6 col-lg-3 item">
+      <div class="card">
+        <img
+          class="img-fluid card-img-top w-100 d-block"
+          src="assets/img/pro-4-220x294.jpg"
+        />
+        <div class="card-body px-1 py-1">
+          <div>
+            <a class="text-left d-block" href="#">Lorem Ipsum Dolor</a>
+          </div>
+          <div class="d-flex justify-content-between">
+            <span>$130</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-12 col-md-6 col-lg-3 item">
+      <div class="card">
+        <img
+          class="img-fluid card-img-top w-100 d-block"
+          src="assets/img/pro-5-220x294.jpg"
+        />
+        <div class="card-body px-1 py-1">
+          <div>
+            <a class="text-left d-block" href="#">Lorem Ipsum Dolor</a>
+          </div>
+          <div class="d-flex justify-content-between">
+            <span>$130</span>
+          </div>
+        </div>
+      </div>
+    </div> -->
+  </div>
+</div>

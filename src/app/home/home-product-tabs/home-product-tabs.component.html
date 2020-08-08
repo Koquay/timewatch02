@@ -1,0 +1,99 @@
+<!-- <section class="section">
+    <div id="tabs">
+        <ul class="nav nav-tabs">
+            <li class="nav-item">
+                <a class="nav-link" role="tab" data-toggle="tab" href="#tab-1" (click)="setTabActive('latestActive')" [ngClass]="{ activeTab: latestActive }">
+                    LATEST PRODUCTS
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" role="tab" data-toggle="tab" href="#tab-2" (click)="setTabActive('specialActive')" [ngClass]="{ activeTab: specialActive }">
+                    SPECIAL PRODUCTS
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" role="tab" data-toggle="tab" href="#tab-3" (click)="setTabActive('bestsellerActive')" [ngClass]="{ activeTab: bestsellerActive }">BESTSELLERS</a>
+            </li>
+        </ul>
+        <div class="tab-content">
+            <div class="tab-pane" role="tabpanel" id="tab-1">
+                <div class="row mt-4">
+                    <div class="col-12 col-md-4" *ngFor="let product of latest">
+                        <div class="card">
+                            <img class="img-fluid card-img-top w-100 d-block" src="assets/img/{{ product.images[0] }}"/>
+                            <div class="card-body">
+                                <div>
+                                    <a class="text-left d-block" href="#">{{ product.name }}</a>
+                                </div>
+                                <div class="d-flex justify-content-between">
+                                    <span>{{
+                  product.price | currency: "USD":"symbol-narrow"
+                }}</span>
+                                    <div>
+                                        <ngb-rating [(rate)]="product.rating" [max]="5">
+                                            <ng-template let-fill="fill" let-index="index">
+                                                <span class="star2" [class.filled]="fill === 100">&#9733;</span>
+                                            </ng-template>
+                                        </ngb-rating>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="tab-pane" role="tabpanel" id="tab-2">
+                <div class="row mt-4">
+                    <div class="col-12 col-md-4" *ngFor="let product of special">
+                        <div class="card">
+                            <img class="img-fluid card-img-top w-100 d-block" src="assets/img/{{ product.images[0] }}"/>
+                            <div class="card-body">
+                                <div>
+                                    <a class="text-left d-block" href="#">{{ product.name }}</a>
+                                </div>
+                                <div class="d-flex justify-content-between">
+                                    <span>{{
+                  product.price | currency: "USD":"symbol-narrow"
+                }}</span>
+                                    <div>
+                                        <ngb-rating [(rate)]="product.rating" [max]="5">
+                                            <ng-template let-fill="fill" let-index="index">
+                                                <span class="star2" [class.filled]="fill === 100">&#9733;</span>
+                                            </ng-template>
+                                        </ngb-rating>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="tab-pane active" role="tabpanel" id="tab-3">
+                <div class="row mt-4">
+                    <div class="col-12 col-md-4" *ngFor="let product of bestseller">
+                        <div class="card">
+                            <img class="img-fluid card-img-top w-100 d-block" src="assets/img/{{ product.images[0] }}"/>
+                            <div class="card-body">
+                                <div>
+                                    <a class="text-left d-block" href="#">{{ product.name }}</a>
+                                </div>
+                                <div class="d-flex justify-content-between">
+                                    <span>{{
+              product.price | currency: "USD":"symbol-narrow"
+            }}</span>
+                                    <div>
+                                        <ngb-rating [(rate)]="product.rating" [max]="5">
+                                            <ng-template let-fill="fill" let-index="index">
+                                                <span class="star2" [class.filled]="fill === 100">&#9733;</span>
+                                            </ng-template>
+                                        </ngb-rating>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section> -->

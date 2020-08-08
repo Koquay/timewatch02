@@ -1,0 +1,62 @@
+.section {
+  margin-top: 6rem;
+}
+
+#blog {
+    .blog-col {
+      img {
+        position: relative;
+      }
+  
+      label {
+        position: absolute;
+        bottom: 7.5rem;
+        left: 1rem;
+        background: rgba(14, 16, 17, 0.5);
+        color: white;
+        padding: 0.3rem 2rem;
+      }
+  
+      #overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.5);
+        opacity: 0;
+        transition-duration: 500m;
+        z-index: 9;
+        transition-duration: 1s;
+      }
+  
+      #read-more {
+        z-index: 10;
+        color: white;
+        background: #b3b3b3;
+        top: 50%;
+        right: 40%;
+        position: absolute;
+        padding: 0.2rem 1rem;
+        border: none;
+        border-radius: 0;
+        opacity: 0;
+        transition-duration: 1s;
+      }
+  
+      .name {
+        z-index: 11;
+      }
+  
+      p {
+        color: #808080;
+      }
+  
+      &:hover {
+        #overlay,
+        #read-more {
+          opacity: 1;
+        }
+      }
+    }
+  }

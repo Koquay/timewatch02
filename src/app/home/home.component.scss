@@ -1,0 +1,71 @@
+.section {
+  margin-top: 6rem;
+}
+
+.activeTab {
+  background-color: black !important;
+  color: white !important;
+  font-weight: bold !important;
+}
+
+
+#tabs {
+  .nav-tabs {
+    border: none;
+
+    .nav-link {
+      border: none;
+      color: inherit;
+
+    
+      &:hover {
+        background-color: black;
+        color: white;
+        font-weight: bold !important;
+      }
+    }
+  }
+
+  .card {
+    position: relative;
+
+    a {
+      color: inherit;
+      text-transform: capitalize;
+    }
+
+    i {
+      color: #fbb03b;
+    }
+
+    .actions {
+      position: absolute;
+      bottom: -3rem;
+      padding: 2rem 3rem;
+      transition-duration: 1s;
+      opacity: 0;
+
+      button {
+        background: #000;
+        border: none;
+        border-radius: 0;
+        padding-top: 0.2rem;
+        padding-bottom: 0.2rem;
+
+        i {
+          color: white;
+        }
+      }
+    }
+
+    &:hover {
+      .actions {
+        bottom: 3rem;
+        opacity: 1;
+      }
+    }
+  }
+}
+
+
+

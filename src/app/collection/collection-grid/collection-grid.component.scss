@@ -1,0 +1,62 @@
+#collection {
+  .item {
+    margin-bottom: 3rem;
+  }
+
+  .card {
+    position: relative;
+
+    i {
+      color: #fbb03b;
+      font-size: 0.8rem;
+    }
+
+    a {
+      color: inherit;
+      text-transform: capitalize;
+    }
+
+    border: none;
+
+    img {
+      border: 1px solid rgba(0, 0, 0, 0.125);
+    }
+
+    .actions {
+      position: absolute;
+      bottom: -3rem;
+      padding: 2rem 1rem;
+      transition-duration: 1s;
+      opacity: 0;
+
+      button {
+        background: #000;
+        border: none;
+        border-radius: 0;
+        padding-top: 0.2rem;
+        padding-bottom: 0.2rem;
+
+        i {
+          color: white;
+        }
+      }
+
+      #add-to-cart-btn {
+        font-size: 0.8rem;
+      }
+    }
+
+    &:hover {
+      .actions {
+        bottom: 3rem;
+        opacity: 1;
+      }
+    }
+  }
+}
+
+#col-left {
+  #refine-btn {
+    background: black;
+  }
+}

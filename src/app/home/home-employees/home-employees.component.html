@@ -1,0 +1,15 @@
+<section class="section" *ngIf="employees">
+    <div class="row">
+        <div class="col" id="parallax">
+            <div class="employee">
+                <img src="assets/img/{{employee.img}}"/>
+                <h4 class="mb-0 mt-2">{{employee.name}}</h4>
+                <small>{{employee.title}}</small>
+                <p class="mt-2 mb-0">
+                    {{employee.bio}}
+                    <br/><br/>
+                </p>
+            </div>
+        </div>
+    </div>
+</section>

@@ -1,0 +1,19 @@
+<section>
+  <div class="row">
+    <div class="col">
+      <img class="img-fluid" src="assets/img/{{product.images[0]}}" />
+    </div>
+  </div>
+  <div class="row mt-4 d-flex justify-content-center">
+    <div class="col-4 col-md-3" *ngFor="let product of relatedProducts">
+      <div class="card">
+        <a (click)="getSelectedProduct(product._id)">
+          <img
+            class="img-fluid card-img-top w-100 d-block"
+            src="assets/img/{{product.images[0]}}"
+          />
+        </a>
+      </div>
+    </div>
+  </div>
+</section>

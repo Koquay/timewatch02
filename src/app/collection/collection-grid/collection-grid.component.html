@@ -1,0 +1,75 @@
+<section>
+  <div class="row">
+    <div class="col">
+      <img class="img-fluid" src="assets/img/category-banner.jpg" />
+    </div>
+  </div>
+</section>
+<section id="collection" class="mt-5" *ngIf="products.length">
+  <app-sort></app-sort>
+
+  <div class="row mt-3">
+    <div class="col-12 col-md-6 col-lg-3 item" *ngFor="let product of products">
+      <div class="card">
+        <a [routerLink]="['/product', product._id]">
+          <img
+            class="img-fluid card-img-top w-100 d-block"
+            src="assets/img/{{product.images[0]}}"
+          />
+        </a>
+        <div class="card-body px-1 py-1">
+          <div>
+            <a
+              class="text-left d-block font-weight-bold"
+              [routerLink]="['/product', product._id]"
+              >{{product.name}}</a
+            >
+            <a
+              class="text-left d-block"
+              [routerLink]="['/product', product._id]"
+              >{{product.brand}}</a
+            >
+          </div>
+
+          <div class="d-flex justify-content-between align-items-center">
+            <span class="strike-through">
+              {{product.list_price | currency:'USD':'symbol-narrow':'3.0-0'}}
+            </span>
+            <span class="font-weight-bold"
+              >{{product.price | currency:'USD':'symbol-narrow':'3.0-0'}}</span
+            >
+
+            <ngb-rating [(rate)]="product.rating" [max]="5">
+              <ng-template let-fill="fill" let-index="index">
+                <span class="star2" [class.filled]="fill === 100">&#9733;</span>
+              </ng-template>
+            </ngb-rating>
+          </div>
+        </div>
+        <div class="d-flex justify-content-between actions w-100">
+          <button
+            class="btn btn-primary"
+            data-toggle="tooltip"
+            data-bs-tooltip=""
+            type="button"
+            title="Add to Wish List"
+          >
+            <i class="fa fa-heart-o"></i></button
+          ><button class="btn btn-primary" id="add-to-cart-btn" type="button">
+            Add To Cart
+          </button>
+          <button
+            class="btn btn-primary"
+            data-toggle="tooltip"
+            data-bs-tooltip=""
+            type="button"
+            title="Compare This Product"
+          >
+            <i class="fa fa-exchange"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<app-pagination></app-pagination>

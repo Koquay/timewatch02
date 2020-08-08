@@ -1,0 +1,18 @@
+<section id="blog" class="section">
+    <h4 class="text-left font-weight-bold">LATEST BLOGS</h4>
+    <div class="row mt-3">
+        <div class="col-12 col-md-6 blog-col mb-2 mb-md-0" *ngFor="let blog of blogs">
+            <img class="img-fluid" src="assets/img/{{blog.img}}"/>
+            <label class="d-none d-lg-block">{{blog.date}}</label>
+            <div id="overlay"></div>
+            <button class="btn btn-primary" id="read-more" type="button">
+                Read More
+            </button>
+            <h5 class="text-left name mt-2">{{blog.topic}}</h5>
+            <p class="text-left">
+                {{blog.excerpt}}
+                amet doLorem ipsum dolor sit amet adipisicing...
+            </p>
+        </div>
+    </div>
+</section>

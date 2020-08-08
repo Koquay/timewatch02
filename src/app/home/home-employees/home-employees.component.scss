@@ -1,0 +1,21 @@
+#parallax {
+    background-image: url(../../../assets/img/prlx.jpg);
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+  
+    .employee {
+      padding: 2rem;
+      p {
+        color: #404040;
+        font-size: 0.9rem;
+        max-width: 60rem;
+        line-height: 1.5rem;
+      }
+  
+      @media (min-width: 768px) {
+        padding: 4rem;
+      }
+    }
+  }

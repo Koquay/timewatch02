@@ -1,0 +1,105 @@
+<section class="product-description">
+  <div class="row">
+    <div class="col">
+      <h5 class="product-name"><strong>{{product.name}}</strong><br /></h5>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col">
+      <div class="rating d-inline-block actions">
+        <ngb-rating [(rate)]="product.rating" [max]="5">
+          <ng-template let-fill="fill" let-index="index">
+            <span class="star2" [class.filled]="fill === 100">&#9733;</span>
+          </ng-template>
+        </ngb-rating>
+      </div>
+      <span class="mx-2">12 review(s)</span><span class="mr-2">/</span
+      ><a href="#">Write a review</a>
+      <hr />
+    </div>
+  </div>
+  <div class="row">
+    <div class="col">
+      <h5>{{product.price | currency:'USD':'symbol-narrow':'3.0-0'}}</h5>
+      <span class="mr-2">Est. Tax:</span
+      ><span
+        >{{product.price * .10 | currency:'USD':'symbol-narrow':'1.0-0'}}</span
+      >
+      <hr />
+    </div>
+  </div>
+  <div class="row">
+    <div class="col">
+      <div class="row">
+        <div class="col-3"><span>Brand:</span></div>
+        <div class="col">
+          <span class="font-weight-bold">{{product.brand}}</span>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-3"><span>UPC:</span></div>
+        <div class="col">
+          <span class="font-weight-bold">prod-839-xcl</span>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-3"><span>Availability:</span></div>
+        <div class="col">
+          <span class="font-weight-bold">3 in stock</span>
+        </div>
+      </div>
+      <hr />
+    </div>
+  </div>
+  <div class="row">
+    <div class="col">
+      <span class="description">
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
+        veniam, quis nostrud exercitation ullamco aliqua. Ut enim ad minim
+        veniam, quis nostrud exercitation ullamco
+      </span>
+    </div>
+  </div>
+  <hr />
+  <div class="row">
+    <div class="col-12 col-md-6 col-lg-4">
+      <span>Qty:&nbsp;</span
+      ><input
+        class="form-control-sm quantity text-center"
+        type="text"
+        required
+        name="quantity"
+        [(ngModel)]="quantity"
+      />
+    </div>
+    <div class="col-8 col-md-8 col-lg-5 mt-2 mt-lg-0">
+      <div class="d-flex justify-content-between actions w-100">
+        <button
+          class="btn btn-primary actionButton"
+          data-toggle="tooltip"
+          data-bs-tooltip=""
+          type="button"
+          title="Add to Wish List"
+        >
+          <i class="fa fa-heart-o"></i></button
+        ><button
+          class="btn btn-primary actionButton"
+          id="add-to-cart-btn"
+          type="button"
+          (click)="addToCart()"
+        >
+          Add To Cart</button
+        ><button
+          class="btn btn-primary actionButton"
+          data-toggle="tooltip"
+          data-bs-tooltip=""
+          type="button"
+          title="Compare This Product"
+        >
+          <i class="fa fa-exchange"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
