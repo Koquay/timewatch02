@@ -9,7 +9,6 @@ export const AuthenticationReducer = (
 ) => {
   switch (LoginActionTypes.SET_LOGGED_IN) {
     case LoginActionTypes.SET_LOGGED_IN:
-      console.log("LoginActionTypes.SET_LOGGED_IN", action.loggedIn);
       return {
         ...state,
         loggedIn: true,

@@ -26,7 +26,6 @@ export class HomeEmployeesComponent implements OnInit {
     let employees$ = this.store.select(employeesSelector);
 
     employees$.subscribe((employees) => {
-      console.log("employees", employees);
       this.employees = employees;
     });
   };

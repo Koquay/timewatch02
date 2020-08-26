@@ -33,13 +33,11 @@ exports.login = async (req, res) => {
     const token = jwt.sign({ userId: user._id }, process.env.JWT_SECRET, {
       expiresIn: "1h",
     });
-    console.log("token", token);
 
     const cart = await Cart.findOne({ user: user._id }).populate({
       path: "products.product",
       model: "Product",
     });
-    console.log("cart", cart);
 
     res.status(200).json({ token, cart });
   } catch (error) {

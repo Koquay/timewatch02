@@ -1,4 +1,4 @@
-<section class="product-description">
+<section class="product-description" *ngIf="!loading">
   <div class="row">
     <div class="col">
       <h5 class="product-name"><strong>{{product.name}}</strong><br /></h5>
@@ -103,3 +103,15 @@
     </div>
   </div>
 </section>
+
+<div
+  *ngIf="loading"
+  class="container d-flex justify-content-center align-items-center"
+  [ngStyle]="{'height': '75vh'}"
+>
+  <div class="row">
+    <div class="col">
+      <img src="assets/img/spinner.gif" class="spinner" />
+    </div>
+  </div>
+</div>

@@ -23,7 +23,6 @@ export class HomeBlogsComponent implements OnInit {
     let blogs$ = this.store.select(blogsSelector);
 
     blogs$.subscribe((blogs) => {
-      console.log("blogs", blogs);
       this.blogs = blogs;
     });
   };

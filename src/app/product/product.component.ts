@@ -20,7 +20,6 @@ export class ProductComponent implements OnInit {
 
   private setSelectedProduct = () => {
     let productId = this.activatedRoute.snapshot.paramMap.get("productId");
-    console.log("productId", productId);
 
     this.store.dispatch(new SetSelectedProduct(productId));
   };

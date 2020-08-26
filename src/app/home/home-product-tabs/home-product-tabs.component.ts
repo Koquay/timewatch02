@@ -15,6 +15,7 @@ export class HomeProductTabsComponent implements OnInit {
   private latestActive = false;
   private specialActive = false;
   private bestsellerActive = true;
+  private loading = false;
 
   constructor(
     private productService: ProductService,
@@ -39,7 +40,7 @@ export class HomeProductTabsComponent implements OnInit {
     });
 
     this.productService
-      .getProducts(productStore.filters)
+      .getProducts(productStore.filters, this.setLoading)
       .subscribe((productData) => {
         this.categorizeProducts(productData.products);
       });
@@ -57,5 +58,9 @@ export class HomeProductTabsComponent implements OnInit {
     this.bestseller = products.filter((product) =>
       product.category.includes("bestseller")
     );
+  };
+
+  public setLoading = (value) => {
+    this.loading = value;
   };
 }

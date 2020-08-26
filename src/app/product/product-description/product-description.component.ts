@@ -11,6 +11,7 @@ import { CartService } from "src/app/cart/cart.service";
 export class ProductDescriptionComponent implements OnInit {
   private product;
   private quantity = 1;
+  private loading = false;
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -23,9 +24,8 @@ export class ProductDescriptionComponent implements OnInit {
   }
 
   private addToCart = () => {
-    console.log("quantity", this.quantity);
     const payload = { quantity: this.quantity, productId: this.product._id };
-    this.cartService.addToCart(payload).subscribe();
+    this.cartService.addToCart(payload, this.setLoading).subscribe();
   };
 
   private getProduct = () => {
@@ -37,7 +37,10 @@ export class ProductDescriptionComponent implements OnInit {
 
     product$.subscribe((product) => {
       this.product = product;
-      console.log("product", this.product);
     });
+  };
+
+  public setLoading = (value) => {
+    this.loading = value;
   };
 }

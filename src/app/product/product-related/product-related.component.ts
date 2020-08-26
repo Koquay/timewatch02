@@ -23,7 +23,6 @@ export class ProductRelatedComponent implements OnInit {
 
     relatedProduct$.subscribe((relatedProducts) => {
       this.relatedProducts = relatedProducts;
-      console.log("relatedProducts", this.relatedProducts);
     });
   };
 }

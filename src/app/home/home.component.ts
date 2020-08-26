@@ -3,6 +3,7 @@ import { Store } from "@ngrx/store";
 import { HomeService } from "./home.service";
 import { productFilters } from "../product/product.filters";
 import { ProductService } from "../product/product.service";
+import { SetActiveNav } from "../shared/components/header/header.actions";
 
 @Component({
   selector: "app-home",
@@ -21,6 +22,7 @@ export class HomeComponent implements OnInit {
   private latestActive = false;
   private specialActive = false;
   private bestsellerActive = true;
+  private loading = false;
 
   constructor(
     private store: Store<any>,
@@ -29,15 +31,20 @@ export class HomeComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    this.setActiveNav("homeActive");
     this.getHomeStaticData();
     this.getProductsByCategory();
   }
+
+  private setActiveNav = (nav) => {
+    this.store.dispatch(new SetActiveNav(nav));
+  };
 
   private getProductsByCategory = async () => {
     let category = ["latest", "special", "bestseller"];
 
     this.productService
-      .getProductsByCategory(category)
+      .getProductsByCategory(category, this.setLoading)
       .subscribe((products) => {
         const productSelector = (state) => {
           return state.product.productsByCategory;
@@ -53,20 +60,6 @@ export class HomeComponent implements OnInit {
       });
   };
 
-  // private categorizeProducts = (products) => {
-  //   this.latest = products.filter((product) =>
-  //     product.category.includes("latest")
-  //   );
-
-  //   this.special = products.filter((product) =>
-  //     product.category.includes("special")
-  //   );
-
-  //   this.bestseller = products.filter((product) =>
-  //     product.category.includes("bestseller")
-  //   );
-  // };
-
   private getHomeStaticData = () => {
     const homeSelector = (state) => {
       return state.home;
@@ -74,7 +67,6 @@ export class HomeComponent implements OnInit {
 
     let home$ = this.store.select(homeSelector);
     home$.subscribe((homeStaticData) => {
-      console.log("homeStaticData", homeStaticData);
       this.carousel = homeStaticData.carousel;
       this.brands = homeStaticData.brands;
       this.blogs = homeStaticData.blogs;
@@ -100,5 +92,9 @@ export class HomeComponent implements OnInit {
         this.bestsellerActive = true;
         break;
     }
+  };
+
+  public setLoading = (value) => {
+    this.loading = value;
   };
 }

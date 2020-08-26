@@ -22,8 +22,6 @@ exports.getProductsByCategory = async (req, res) => {
 };
 
 exports.getProducts = async (req, res) => {
-  console.log(chalk.blue("PRODUCT SERVICE GET PRODUCTS"));
-
   const { filters } = req.query;
 
   const productCountPipeline = [];
@@ -36,9 +34,7 @@ exports.getProducts = async (req, res) => {
     const products = await Product.aggregate(aggregatePipeline);
     const productCount = await getProductCount(productCountPipeline);
     res.status(200).json({ products, productCount });
-    // console.log("products", products);
   } catch (error) {
-    console.log(error);
     res.status(500).send("Problem getting product collection");
   }
 };
@@ -76,7 +72,7 @@ const buildAggregatePipeline = (filtersStr, productCountPipeline) => {
   }
 
   let colorMatch = buildColorMatch(colors);
-  console.log("colorMatch", colorMatch);
+
   if (colorMatch) {
     aggregatePipeline.push(colorMatch);
     productCountPipeline.push(colorMatch);
@@ -87,8 +83,6 @@ const buildAggregatePipeline = (filtersStr, productCountPipeline) => {
   //   aggregatePipeline.push(sizeMatch);
   //   productCountPipeline.push(sizeMatch);
   // }
-
-  console.log("aggregatePipeline", JSON.stringify(aggregatePipeline));
 
   aggregatePipeline.push(buildSortMatch(sortFilter));
   checkForEmptyAggregate(aggregatePipeline);
@@ -128,8 +122,6 @@ const getProductCount = async (productCountPipeline) => {
   productCountPipeline.push({ $count: "productCount" });
 
   productCount = await Product.aggregate(productCountPipeline);
-
-  console.log("productCount", productCount);
 
   if (productCount.length) {
     return productCount[0].productCount;

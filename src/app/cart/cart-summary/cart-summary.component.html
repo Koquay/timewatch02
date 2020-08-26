@@ -1,0 +1,39 @@
+<section class="mt-5">
+  <div class="row">
+    <div class="col-8 d-none d-lg-block"></div>
+    <div class="col priceSummary">
+      <span class="d-block">Subtotal:</span
+      ><span class="d-block mt-1">Taxes:</span
+      ><span class="d-block mt-1 font-weight-bold">Total:</span>
+    </div>
+    <div class="col-6 d-block col-lg-1 col-md-3 priceSummary">
+      <span class="d-block"
+        >{{subtotal | currency:'USD':'symbol-narrow':'1.0-0'}}</span
+      ><span class="d-block mt-1"
+        >{{taxes | currency:'USD':'symbol-narrow':'1.0-0'}}</span
+      ><span class="d-block mt-1 font-weight-bold"
+        >{{total | currency:'USD':'symbol-narrow':'1.0-0'}}</span
+      >
+    </div>
+  </div>
+</section>
+<section class="mt-5">
+  <div class="row">
+    <div class="col d-flex justify-content-between actionCol">
+      <button
+        class="btn btn-primary actionButton"
+        id="add-to-cart-btn"
+        type="button"
+      >
+        Continue Shopping</button
+      ><button
+        class="btn btn-primary actionButton mt-2 mt-md-0"
+        id="add-to-cart-btn"
+        type="button"
+        [routerLink]="['/checkout']"
+      >
+        Checkout
+      </button>
+    </div>
+  </div>
+</section>

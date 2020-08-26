@@ -6,6 +6,7 @@ import {
   SetPriceRange,
 } from "src/app/product/product.actions";
 import { ProductService } from "src/app/product/product.service";
+import { SidebarService } from "./sidebar.service";
 
 @Component({
   selector: "app-sidebar",
@@ -18,10 +19,12 @@ export class SidebarComponent implements OnInit {
   private prices;
   private sizes;
   private brands;
+  public childLoading = false;
 
   constructor(
     private store: Store<any>,
-    private productService: ProductService
+    private productService: ProductService,
+    private sidebarService: SidebarService
   ) {}
 
   ngOnInit() {
@@ -46,16 +49,20 @@ export class SidebarComponent implements OnInit {
 
   private handleColorChange = (color) => {
     this.store.dispatch(new SetColor(color));
-    this.productService.getProducts(this.filters).subscribe();
+    this.productService.getProducts(this.filters, this.setLoading).subscribe();
   };
 
   private handleBrandChange = (brand) => {
     this.store.dispatch(new SetBrand(brand));
-    this.productService.getProducts(this.filters).subscribe();
+    this.productService.getProducts(this.filters, this.setLoading).subscribe();
   };
 
   private handlePricesRangeChange = (range) => {
     this.store.dispatch(new SetPriceRange(range));
-    this.productService.getProducts(this.filters).subscribe();
+    this.productService.getProducts(this.filters, this.setLoading).subscribe();
+  };
+
+  public setLoading = (value) => {
+    this.sidebarService.publishingLoading(value);
   };
 }

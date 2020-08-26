@@ -9,6 +9,8 @@ import { HomeBlogsComponent } from "../home/home-blogs/home-blogs.component";
 import { HomeCarouselComponent } from "../home/home-carousel/home-carousel.component";
 import { HomeBrandsComponent } from "../home/home-brands/home-brands.component";
 import { HomeProductTabsComponent } from "../home/home-product-tabs/home-product-tabs.component";
+import { MessageComponent } from "./components/message/message.component";
+import { HeaderNavComponent } from './components/header/header-nav/header-nav.component';
 
 @NgModule({
   declarations: [
@@ -19,6 +21,8 @@ import { HomeProductTabsComponent } from "../home/home-product-tabs/home-product
     HomeCarouselComponent,
     HomeBrandsComponent,
     HomeProductTabsComponent,
+    MessageComponent,
+    HeaderNavComponent,
   ],
   exports: [
     HeaderComponent,
@@ -28,6 +32,7 @@ import { HomeProductTabsComponent } from "../home/home-product-tabs/home-product
     HomeCarouselComponent,
     HomeBrandsComponent,
     HomeProductTabsComponent,
+    MessageComponent,
   ],
   imports: [CommonModule, SharedRoutingModule],
 })

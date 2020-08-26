@@ -22,7 +22,6 @@ export class HomeCarouselComponent implements OnInit {
 
     let carousel$ = this.store.select(carouselSelector);
     carousel$.subscribe((carouselData) => {
-      console.log("carouselData", carouselData);
       this.carousel = carouselData;
     });
   };

@@ -2,6 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { Store } from "@ngrx/store";
 import { SetSelectedPageNo } from "src/app/product/product.actions";
 import { ProductService } from "src/app/product/product.service";
+import { PaginationService } from "./pagination.service";
 
 @Component({
   selector: "app-pagination",
@@ -12,10 +13,12 @@ export class PaginationComponent implements OnInit {
   private pages;
   private filters;
   private selectedPageNo = 1;
+  private loading = false;
 
   constructor(
     private store: Store<any>,
-    private productService: ProductService
+    private productService: ProductService,
+    private paginationService: PaginationService
   ) {}
 
   ngOnInit() {
@@ -32,7 +35,6 @@ export class PaginationComponent implements OnInit {
     pages$.subscribe((filters) => {
       this.pages = filters.pages;
       this.filters = filters;
-      console.log("pages", this.pages);
     });
   };
 
@@ -55,8 +57,14 @@ export class PaginationComponent implements OnInit {
     }
 
     if (fetchData) {
-      this.productService.getProducts(this.filters).subscribe();
+      this.productService
+        .getProducts(this.filters, this.setLoading)
+        .subscribe();
       this.selectedPageNo = this.filters.pageNo;
     }
+  };
+
+  public setLoading = (value) => {
+    this.paginationService.publishingLoading(value);
   };
 }

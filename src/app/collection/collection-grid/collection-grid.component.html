@@ -5,7 +5,7 @@
     </div>
   </div>
 </section>
-<section id="collection" class="mt-5" *ngIf="products.length">
+<section id="collection" class="mt-5" *ngIf="products.length && !loading">
   <app-sort></app-sort>
 
   <div class="row mt-3">
@@ -72,4 +72,17 @@
     </div>
   </div>
 </section>
+
+<div
+  *ngIf="loading"
+  class="container d-flex justify-content-center align-items-center"
+  [ngStyle]="{'height': '75vh'}"
+>
+  <div class="row">
+    <div class="col">
+      <img src="assets/img/spinner.gif" class="spinner" />
+    </div>
+  </div>
+</div>
+
 <app-pagination></app-pagination>

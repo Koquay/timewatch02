@@ -22,7 +22,6 @@ export class HomeBrandsComponent implements OnInit {
 
     let brands$ = this.store.select(brandsSelector);
     brands$.subscribe((brandsData) => {
-      console.log("brandsData", brandsData);
       this.brands = brandsData;
     });
   };

@@ -1,0 +1,351 @@
+<app-header></app-header>
+<app-message></app-message>
+
+<div class="container" *ngIf="!loading">
+  <form class="form mt-5" #checkoutForm="ngForm" *ngIf="checkoutData">
+    <section class="section">
+      <span class="sectionHeader">DELIVERY</span>
+      <div class="form-row my-md-4">
+        <div class="col-12 col-md-6 my-3 my-md-0">
+          <label class="font-weight-bold">First Name</label>
+          <input
+            class="form-control"
+            type="text"
+            name="firstName"
+            required
+            [(ngModel)]="checkoutData.firstName"
+            #firstName="ngModel"
+            (change)="saveCheckoutDataToStore()"
+          />
+          <div
+            *ngIf="firstName.invalid && (firstName.dirty || firstName.touched)"
+          >
+            <div *ngIf="firstName.errors.required" class="c-red">
+              firstName is required
+            </div>
+          </div>
+        </div>
+        <div class="col-12 col-md-6 my-3 my-md-0">
+          <label class="font-weight-bold">Last Name</label>
+          <input
+            class="form-control"
+            type="text"
+            name="lastName"
+            required
+            [(ngModel)]="checkoutData.lastName"
+            #lastName="ngModel"
+            (change)="saveCheckoutDataToStore()"
+          />
+          <div *ngIf="lastName.invalid && (lastName.dirty || lastName.touched)">
+            <div *ngIf="lastName.errors.required" class="c-red">
+              lastName is required
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-row my-md-4">
+        <div class="col-12 col-md-6 my-3 my-md-0">
+          <label class="font-weight-bold">Email</label>
+          <input
+            class="form-control"
+            type="text"
+            name="email"
+            required
+            [(ngModel)]="checkoutData.email"
+            #email="ngModel"
+            (change)="saveCheckoutDataToStore()"
+          />
+          <div *ngIf="email.invalid && (email.dirty || email.touched)">
+            <div *ngIf="email.errors.required" class="c-red">
+              email is required
+            </div>
+          </div>
+        </div>
+        <div class="col-12 col-md-6 my-3 my-md-0">
+          <label class="font-weight-bold">Phone</label>
+          <input
+            class="form-control"
+            type="text"
+            name="phone"
+            required
+            [(ngModel)]="checkoutData.phone"
+            #phone="ngModel"
+            (change)="saveCheckoutDataToStore()"
+          />
+          <div *ngIf="phone.invalid && (phone.dirty || phone.touched)">
+            <div *ngIf="phone.errors.required" class="c-red">
+              phone is required
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-row my-md-4">
+        <div class="col-12 col-md-6 my-3 my-md-0">
+          <label class="font-weight-bold">Shipping Address</label>
+          <input
+            class="form-control"
+            type="text"
+            name="shippingAddress"
+            required
+            [(ngModel)]="checkoutData.shippingAddress"
+            #shippingAddress="ngModel"
+            (change)="saveCheckoutDataToStore()"
+          />
+          <div
+            *ngIf="shippingAddress.invalid && (shippingAddress.dirty || shippingAddress.touched)"
+          >
+            <div *ngIf="shippingAddress.errors.required" class="c-red">
+              Shipping address is required
+            </div>
+          </div>
+        </div>
+        <div class="col-12 col-md-6 my-3 my-md-0">
+          <label class="font-weight-bold">City, State</label>
+          <select
+            id="filters"
+            class="form-control"
+            required
+            name="cityState"
+            [(ngModel)]="checkoutData.cityState"
+            #cityState="ngModel"
+            (change)="saveCheckoutDataToStore()"
+          >
+            <option></option>
+            <option *ngFor="let option of citiesStates">
+              {{option.value}}
+            </option>
+          </select>
+          <div
+            class="col-12"
+            *ngIf="cityState.invalid && (cityState.dirty || cityState.touched)"
+          >
+            <div *ngIf="cityState.errors.required" class="c-red">
+              cityState is required
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-row my-md-4">
+        <div class="col-12 col-md-6 my-3 my-md-0">
+          <label class="font-weight-bold">Zip Code</label>
+          <input
+            class="form-control"
+            type="text"
+            name="zipCode"
+            required
+            [(ngModel)]="checkoutData.zipCode"
+            #zipCode="ngModel"
+            (change)="saveCheckoutDataToStore()"
+          />
+          <div *ngIf="zipCode.invalid && (zipCode.dirty || zipCode.touched)">
+            <div *ngIf="zipCode.errors.required" class="c-red">
+              zipCode is required
+            </div>
+          </div>
+        </div>
+        <div class="col-12 col-md-6 my-3 my-md-0">
+          <label class="font-weight-bold">Delivery Date</label>
+          <input
+            class="form-control"
+            type="date"
+            name="deliveryDate"
+            required
+            [(ngModel)]="checkoutData.deliveryDate"
+            #deliveryDate="ngModel"
+            (change)="saveCheckoutDataToStore()"
+          />
+          <div
+            *ngIf="deliveryDate.invalid && (deliveryDate.dirty || deliveryDate.touched)"
+          >
+            <div *ngIf="deliveryDate.errors.required" class="c-red">
+              deliveryDate is required
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-row my-md-4">
+        <div class="col-12 col-md-6 my-3 my-md-0">
+          <label class="font-weight-bold">Special Instructions</label>
+          <textarea
+            class="form-control"
+            type="text"
+            name="specialInstructions"
+            [(ngModel)]="checkoutData.specialInstructions"
+            (change)="saveCheckoutDataToStore()"
+          ></textarea>
+        </div>
+      </div>
+    </section>
+
+    <section class="mt-5">
+      <span class="sectionHeader">PAYMENT</span>
+      <div class="form-check my-3">
+        <input
+          class="form-check-input"
+          type="radio"
+          id="formCheck-1"
+          name="paymentType"
+          [(ngModel)]="checkoutData.paymentType"
+          value="PayPal"
+          (change)="saveCheckoutDataToStore()"
+        />
+        <label class="form-check-label" htmlFor="formCheck-1">
+          PayPal
+        </label>
+      </div>
+
+      <div class="form-check">
+        <input
+          class="form-check-input"
+          type="radio"
+          id="formCheck-2"
+          name="paymentType"
+          [(ngModel)]="checkoutData.paymentType"
+          value="Credit Card"
+          (change)="saveCheckoutDataToStore()"
+        />
+        <label class="form-check-label" htmlFor="formCheck-2">
+          Credit Card
+        </label>
+      </div>
+
+      <div class="form-row mt-2">
+        <div class="col col-md-6">
+          <div class="input-group mt-2">
+            <div class="input-group-prepend">
+              <span class="input-group-text">
+                <i class="fa fa-credit-card-alt"></i>
+              </span>
+            </div>
+            <input
+              class="form-control"
+              name="cardNumber"
+              type="text"
+              placeholder="Enter credit card number"
+              required
+              [(ngModel)]="checkoutData.cardNumber"
+              #cardNumber="ngModel"
+              (change)="saveCheckoutDataToStore()"
+            />
+            <div
+              class="col-12"
+              *ngIf="cardNumber.invalid && (cardNumber.dirty || cardNumber.touched)"
+            >
+              <div *ngIf="cardNumber.errors.required" class="c-red">
+                Card number is required
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-row mt-4">
+        <div class="col">
+          <label>Expiration</label>
+          <select
+            class="form-control border-outset"
+            name="expMonth"
+            required
+            [(ngModel)]="checkoutData.expMonth"
+            #expMonth="ngModel"
+            (change)="saveCheckoutDataToStore()"
+          >
+            <option></option>
+            <option *ngFor="let option of expMonths">
+              {{option.value}}
+            </option>
+          </select>
+          <div
+            class="col-12"
+            *ngIf="expMonth.invalid && (expMonth.dirty || expMonth.touched)"
+          >
+            <div *ngIf="expMonth.errors.required" class="c-red">
+              expMonth is required
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <label>&nbsp;</label>
+          <select
+            class="form-control border-outset"
+            name="expYear"
+            required
+            [(ngModel)]="checkoutData.expYear"
+            #expYear="ngModel"
+            (change)="saveCheckoutDataToStore()"
+          >
+            <option></option>
+            <option *ngFor="let option of expYears">
+              {{option.value}}
+            </option>
+          </select>
+          <div
+            class="col-12"
+            *ngIf="expYear.invalid && (expYear.dirty || expYear.touched)"
+          >
+            <div *ngIf="expYear.errors.required" class="c-red">
+              expYear is required
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <label>CW</label>
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <span class="input-group-text">
+                <i class="fa fa-credit-card-alt"></i>
+              </span>
+            </div>
+            <input
+              class="form-control"
+              type="text"
+              name="cw"
+              minlength="3"
+              maxlength="3"
+              required
+              [(ngModel)]="checkoutData.cw"
+              #cw="ngModel"
+              (change)="saveCheckoutDataToStore()"
+            />
+            <div class="col-12" *ngIf="cw.invalid && (cw.dirty || cw.touched)">
+              <div *ngIf="cw.errors.required" class="c-red">
+                CW is required
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-row mt-5">
+        <div class="col">
+          <button
+            class="actionButton btn btn-primary button"
+            id="btn-place-order"
+            type="button"
+            [disabled]="!checkoutForm.form.valid"
+            (click)="placeOrder()"
+          >
+            Place Order
+          </button>
+        </div>
+      </div>
+    </section>
+  </form>
+</div>
+<div
+  *ngIf="loading"
+  class="container d-flex justify-content-center align-items-center"
+  [ngStyle]="{'height': '75vh'}"
+>
+  <div class="row">
+    <div class="col">
+      <img src="assets/img/spinner.gif" class="spinner" />
+    </div>
+  </div>
+</div>
+
+<app-footer></app-footer>

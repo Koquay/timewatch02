@@ -1,0 +1,28 @@
+<div class="container" *ngIf="displayMessage">
+  <div
+    aria-live="polite"
+    aria-atomic="true"
+    class="alertMain d-flex justify-content-center align-items-center mb-4"
+  >
+    <div
+      class="alert alertDiv"
+      role="alert"
+      [ngClass]="{ 'alert-danger': error, 'alert-primary': info }"
+    >
+      <div class="">
+        <h3 class="mr-auto d-inline-block">{{title}}</h3>
+        <button
+          type="button"
+          class="ml-2 mb-1 close"
+          aria-label="Close"
+          (click)="closeMessage()"
+        >
+          <span aria-hidden="true">
+            <i class="fa fa-times"></i>
+          </span>
+        </button>
+      </div>
+      <div class="">{{displayMessage}}</div>
+    </div>
+  </div>
+</div>

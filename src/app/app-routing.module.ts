@@ -25,6 +25,14 @@ const routes: Routes = [
     loadChildren: "./product/product.module#ProductModule",
   },
   {
+    path: "cart",
+    loadChildren: "./cart/cart.module#CartModule",
+  },
+  {
+    path: "checkout",
+    loadChildren: "./checkout/checkout.module#CheckoutModule",
+  },
+  {
     path: "",
     pathMatch: "prefix",
     redirectTo: "login",

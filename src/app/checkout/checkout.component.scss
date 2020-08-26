@@ -1,0 +1,35 @@
+.form {
+}
+
+@media (min-width: 768px) {
+  .form {
+    padding: 0 5rem;
+  }
+}
+
+@media (min-width: 991px) {
+  .form {
+    padding: 0 10rem;
+  }
+}
+
+.sectionHeader {
+  font-size: 1.2rem;
+  font-weight: bold;
+  border-bottom: 3px solid #ef5656;
+}
+
+.actionButton {
+  background: #000;
+  border: 1px solid #000;
+  border-radius: 0;
+  min-width: 11rem;
+}
+.actionButton:hover {
+  background: #4b4e50;
+  border: 1px solid #4b4e50;
+}
+
+.errorMsg {
+  color: red;
+}

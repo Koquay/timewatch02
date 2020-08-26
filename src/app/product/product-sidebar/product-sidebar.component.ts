@@ -1,5 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { Store } from "@ngrx/store";
+import { SetError } from "src/app/shared/components/message/message.actions";
 
 @Component({
   selector: "app-product-sidebar",
@@ -26,7 +27,17 @@ export class ProductSidebarComponent implements OnInit {
     const products$ = this.store.select(productSelector);
 
     products$.subscribe((productsByCategory) => {
-      console.log("productsByCategory", productsByCategory);
+      if (!productsByCategory.latest) {
+        productsByCategory = JSON.parse(localStorage.getItem("timewatch02"));
+      }
+
+      if (!productsByCategory.latest) {
+        this.store.dispatch(
+          new SetError(
+            "Product categories not loaded. Please log in to proceed."
+          )
+        );
+      }
       this.latest = productsByCategory.latest.products;
       this.bestseller = productsByCategory.bestseller.products;
       this.special = productsByCategory.special.products;

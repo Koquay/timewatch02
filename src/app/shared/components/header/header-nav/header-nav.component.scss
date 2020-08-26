@@ -1,0 +1,109 @@
+$black: #252729;
+
+body {
+  a {
+    cursor: pointer;
+    color: inherit;
+    text-decoration: none;
+  }
+
+  .strike-through {
+    text-decoration: line-through;
+  }
+}
+
+#header-section-1 {
+  background-color: $black;
+  color: #b3b3b3;
+  font-size: 0.8rem;
+
+  .nav-drop-down {
+    position: relative;
+
+    .input-group {
+      button {
+        background-color: black;
+        border: none;
+      }
+    }
+
+    input {
+      padding: 6px 0px;
+      background-color: #333333;
+      position: absolute;
+      right: 34px;
+      transition: all 0.4s ease 0s;
+      border: none;
+    }
+
+    a {
+      color: #b3b3b3;
+      background-color: black;
+      border: 1px solid black;
+      text-decoration: none;
+
+      &:hover {
+        color: white;
+      }
+    }
+
+    ul {
+      position: absolute;
+      color: #6c6b6a;
+      border: 1px solid #d5d4d0;
+      padding: 0.5rem;
+      width: 10rem;
+      top: 2.5rem;
+    }
+
+    #my-account-dropdown {
+      display: none;
+
+      li {
+        cursor: pointer;
+      }
+    }
+
+    &:hover {
+      #my-account-dropdown {
+        display: block;
+      }
+    }
+  }
+}
+
+#header-section-2 {
+  #phone-icon {
+    font-size: 2rem;
+  }
+}
+
+#phone-icon {
+  font-size: 2rem;
+}
+
+#header-section-3 {
+}
+
+#header-section-4 {
+  background-color: black;
+
+  .breadcrumb {
+    background-color: black;
+    color: white;
+  }
+
+  @media (min-width: 991px) {
+    margin: 0rem 13.8rem;
+    padding: 0 3rem 0 0;
+  }
+}
+
+.header-hr {
+  border: 1px solid black;
+}
+
+.activeNav {
+  font-weight: bold !important;
+  color: black;
+}

@@ -8,6 +8,7 @@ import {
   AddProductAction,
   AddProductsByCategoryAction,
 } from "./product.actions";
+import { SetError } from "../shared/components/message/message.actions";
 
 @Injectable({
   providedIn: "root",
@@ -17,9 +18,10 @@ export class ProductService {
 
   constructor(private httpClient: HttpClient, private store: Store<any>) {}
 
-  public getProducts = (filters) => {
+  public getProducts = (filters, setLoading) => {
     const productFilters = this.createProductFilters(filters);
 
+    setLoading(true);
     return this.httpClient
       .get<{ products: []; productCount: number }>(
         `${this.url}${productFilters}`
@@ -27,16 +29,30 @@ export class ProductService {
       .pipe(
         tap((productData) => {
           this.store.dispatch(new AddProductAction(productData));
+          setLoading(false);
+        }),
+        catchError((error) => {
+          this.store.dispatch(new SetError(error.error));
+          setLoading(false);
+          throw error;
         })
       );
   };
 
-  public getProductsByCategory = (category) => {
+  public getProductsByCategory = (category, setLoading) => {
     const payload = JSON.stringify(category);
     const queryParams = `?category=${payload}`;
+
+    setLoading(true);
     return this.httpClient.get(`${this.url}/2/${queryParams}`).pipe(
       tap((products) => {
         this.store.dispatch(new AddProductsByCategoryAction(products));
+        setLoading(false);
+      }),
+      catchError((error) => {
+        this.store.dispatch(new SetError(error.error));
+        setLoading(false);
+        throw error;
       })
     );
   };

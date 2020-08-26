@@ -2,6 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { Store } from "@ngrx/store";
 import { SetSortOption } from "src/app/product/product.actions";
 import { ProductService } from "src/app/product/product.service";
+import { SortService } from "./sort.service";
 
 @Component({
   selector: "app-sort",
@@ -12,10 +13,12 @@ export class SortComponent implements OnInit {
   private sortOptions;
   private selectedOption;
   private sortFilters;
+  private loading = false;
 
   constructor(
     private store: Store<any>,
-    private productService: ProductService
+    private productService: ProductService,
+    private sortService: SortService
   ) {}
 
   ngOnInit() {
@@ -37,6 +40,12 @@ export class SortComponent implements OnInit {
 
   private changeOption = (optionId) => {
     this.store.dispatch(new SetSortOption(optionId));
-    this.productService.getProducts(this.sortFilters).subscribe();
+    this.productService
+      .getProducts(this.sortFilters, this.setLoading)
+      .subscribe();
+  };
+
+  public setLoading = (value) => {
+    this.sortService.publishLoading(value);
   };
 }

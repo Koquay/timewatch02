@@ -6,6 +6,9 @@ export const ProductReducer = (state = initialState, action) => {
   switch (action.type) {
     case ProductActionTypes.ADD_PRODUCTS:
       newFilters = addPaginationToFilters(state.filters, action.productData);
+      addItemToLocalStorage("products", action.productData.products);
+      addItemToLocalStorage("productCount", action.productData.productCount);
+
       return {
         ...state,
         products: action.productData.products,
@@ -14,11 +17,21 @@ export const ProductReducer = (state = initialState, action) => {
       };
 
     case ProductActionTypes.ADD_PRODUCTS_BY_CATEGORY:
-      const productsByCategory = addProductsByCategory(action.products);
-      return {
-        ...state,
-        productsByCategory: productsByCategory,
-      };
+      if (action.products.length) {
+        const productsByCategory = addProductsByCategory(action.products);
+        addItemToLocalStorage("productsByCategory", productsByCategory);
+        return {
+          ...state,
+          productsByCategory: productsByCategory,
+        };
+      } else {
+        let localStorageData = JSON.parse(localStorage.getItem("timewatch02"));
+
+        return {
+          ...state,
+          productsByCategory: localStorageData.productsByCategory,
+        };
+      }
 
     case ProductActionTypes.GET_PRODUCTS:
       return state;
@@ -31,7 +44,6 @@ export const ProductReducer = (state = initialState, action) => {
       };
 
     case ProductActionTypes.SET_SORT_OPTION:
-      console.log("optionId", action.optionId);
       newFilters = setSortOption(state.filters, action.optionId);
       return {
         ...state,
@@ -39,7 +51,6 @@ export const ProductReducer = (state = initialState, action) => {
       };
 
     case ProductActionTypes.SET_COLOR:
-      console.log("color", action.color);
       newFilters = setColor(state.filters, action.color);
       return {
         ...state,
@@ -47,7 +58,6 @@ export const ProductReducer = (state = initialState, action) => {
       };
 
     case ProductActionTypes.SET_BRAND:
-      console.log("brand", action.brand);
       newFilters = setBrand(state.filters, action.brand);
       return {
         ...state,
@@ -55,7 +65,6 @@ export const ProductReducer = (state = initialState, action) => {
       };
 
     case ProductActionTypes.SET_PRICE_RANGE:
-      console.log("price range", action.priceRange);
       newFilters = setPriceRange(state.filters, action.priceRange);
       return {
         ...state,
@@ -63,19 +72,66 @@ export const ProductReducer = (state = initialState, action) => {
       };
 
     case ProductActionTypes.SET_SELECTED_PRODUCT:
-      const selectedProductData = getSelectedProductData(
-        state.products,
-        action.productId
-      );
-      return {
-        ...state,
-        product: selectedProductData.selectedProduct,
-        relatedProducts: selectedProductData.relatedProducts,
-      };
+      if (state.products.length) {
+        const selectedProductData = getSelectedProductData(
+          state.products,
+          action.productId
+        );
+
+        addItemToLocalStorage("product", selectedProductData.selectedProduct);
+        addItemToLocalStorage(
+          "relatedProducts",
+          selectedProductData.relatedProducts
+        );
+        return {
+          ...state,
+          product: selectedProductData.selectedProduct,
+          relatedProducts: selectedProductData.relatedProducts,
+        };
+      } else {
+        let localStorageData = JSON.parse(localStorage.getItem("timewatch02"));
+
+        return {
+          ...state,
+          product: localStorageData.product,
+          products: localStorageData.products,
+          relatedProducts: localStorageData.relatedProducts,
+          productsByCategory: localStorageData.productsByCategory,
+        };
+      }
 
     default:
       return state;
   }
+};
+
+const addItemToLocalStorage = (tag, item) => {
+  let localStorageData = JSON.parse(localStorage.getItem("timewatch02"));
+  if (!localStorageData) {
+    localStorageData = JSON.parse(JSON.stringify(localStorageDataTmp));
+  }
+  switch (tag) {
+    case "productsByCategory":
+      localStorageData.productsByCategory = item;
+      break;
+
+    case "products":
+      localStorageData.products = item;
+      break;
+
+    case "product":
+      localStorageData.product = item;
+      break;
+
+    case "relatedProducts":
+      localStorageData.relatedProducts = item;
+      break;
+
+    default:
+      return;
+  }
+
+  localStorage.setItem("timewatch02", JSON.stringify(localStorageData));
 };
 
 const addProductsByCategory = (products) => {
@@ -130,7 +186,6 @@ const getSelectedProductData = (products, productId) => {
     .sort()
     .slice(0, 5);
 
-  console.log("relatedProducts", relatedProducts);
   return { selectedProduct, relatedProducts };
 };
 
@@ -138,18 +193,13 @@ const setPriceRange = (filters, range) => {
   const newPriceRange = JSON.parse(JSON.stringify(filters.prices));
 
   let newRange = newPriceRange.find((nRange) => nRange.name === range.name);
-  console.log("newRange", newRange);
 
   newRange.checked = !newRange.checked;
-
-  console.log("newPriceRange checked", newPriceRange);
 
   let newFilters = {
     ...filters,
     prices: newPriceRange,
   };
-
-  console.log("newFilters", newFilters);
 
   return newFilters;
 };
@@ -219,11 +269,6 @@ const getNewPageNo = (filters, direction, pageNo) => {
 };
 
 const computePagination = (productCount, filters) => {
-  console.log(
-    "payload.productCount, state.pageSize",
-    productCount,
-    filters.pageSize
-  );
   let nop = Math.ceil(productCount / filters.pageSize);
   let pages = [];
   for (let i = 1; i <= nop; i++) {
@@ -231,6 +276,14 @@ const computePagination = (productCount, filters) => {
   }
 
   return pages;
+};
+
+const localStorageDataTmp = {
+  products: [],
+  product: {},
+  productsByCategory: {},
+  relatedProducts: [],
+  productCount: 0,
 };
 
 const initialState = {

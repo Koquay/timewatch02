@@ -9,6 +9,7 @@ import { LoginService } from "./login.service";
 })
 export class LoginComponent implements OnInit {
   private loginData: LoginModel;
+  private loading = false;
 
   constructor(private loginService: LoginService) {
     this.loginData = new LoginModel();
@@ -17,7 +18,10 @@ export class LoginComponent implements OnInit {
   ngOnInit() {}
 
   private login = () => {
-    console.log("loginData", this.loginData);
-    this.loginService.login(this.loginData).subscribe();
+    this.loginService.login(this.loginData, this.setLoading).subscribe();
+  };
+
+  public setLoading = (value) => {
+    this.loading = value;
   };
 }

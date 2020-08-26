@@ -1,0 +1,89 @@
+<section *ngIf="!loading">
+  <div class="row d-flex align-items-center d-none d-md-flex font-weight-bold">
+    <div class="col-4 col-md-2 d-none d-md-block">
+      <span>Product</span>
+    </div>
+    <div class="col-8 col-md-4 d-none d-md-block">
+      <span>Name<br /></span>
+    </div>
+    <div class="col-6 col-md-2 d-none d-md-block"><span>UPC</span></div>
+    <div class="col-6 col-md-2 d-none d-md-block">
+      <span>Quantity</span>
+    </div>
+    <div class="col-6 col-md-1 d-none d-md-block"><span>Price</span></div>
+    <div class="col-6 col-md-1 d-none d-md-block"><span>Total</span></div>
+    <div class="col d-none d-md-block">
+      <hr />
+    </div>
+  </div>
+  <div
+    class="row d-flex align-items-center align-items-lg-start mb-4"
+    *ngFor="let item of cart.products"
+  >
+    <div class="col-4 col-md-2 mb-2 mb-md-0">
+      <img
+        class="img-fluid cartImage"
+        src="assets/img/{{item.product.images[0]}}"
+      />
+    </div>
+    <div class="col-8 d-lg-flex col-md-4 mb-2 mb-md-0">
+      <span>{{item.product.name}}</span>
+    </div>
+    <div class="col-6 col-md-2 mb-2 mb-md-0">
+      <span class="font-weight-bold d-block d-md-none">Model</span
+      ><span>prod-aaa-xxx</span>
+    </div>
+    <div
+      class="col-6 d-flex justify-content-around align-items-center col-md-2 quantity d-md-block mb-2 mb-md-0"
+    >
+      <input
+        class="form-control-sm text-center mb-2"
+        type="number"
+        [(ngModel)]="item.quantity"
+      />
+      <div>
+        <a (click)="updateCartItem(item)">
+          <i
+            class="fa fa-refresh mr-3"
+            data-toggle="tooltip"
+            data-bs-tooltip=""
+            title="Update Quantity"
+          ></i>
+        </a>
+        <a (click)="deleteCartItem(item.product._id)">
+          <i
+            class="fa fa-trash-o"
+            data-toggle="tooltip"
+            data-bs-tooltip=""
+            title="Delete Item"
+          ></i>
+        </a>
+      </div>
+    </div>
+    <div class="col-6 col-md-1">
+      <span class="font-weight-bold d-block d-md-none">Price</span
+      ><span
+        >{{item.product.price | currency:'USD':'symbol-narrow':'1.0-0'}}</span
+      >
+    </div>
+    <div class="col-6 col-md-1">
+      <span class="font-weight-bold d-block d-md-none">Total</span
+      ><span
+        >{{item.product.price * item.quantity |
+        currency:'USD':'symbol-narrow':'1.0-0'}}</span
+      >
+    </div>
+  </div>
+</section>
+
+<div
+  *ngIf="loading"
+  class="container d-flex justify-content-center align-items-center"
+  [ngStyle]="{'height': '75vh'}"
+>
+  <div class="row">
+    <div class="col">
+      <img src="assets/img/spinner.gif" class="spinner" />
+    </div>
+  </div>
+</div>
