@@ -1,4 +1,5 @@
 import { MessageActionsUnion, MessageTypes } from "./message.actions";
+import { timer } from "rxjs";
 
 export const MessageReducer = (
   state = initialState,
@@ -28,6 +29,7 @@ export const MessageReducer = (
         info: "",
         title: "",
       };
+
     default:
       return state;
   }

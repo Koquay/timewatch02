@@ -12,9 +12,26 @@ export const CartReducer = (state = initialState, action: CartActionsUnion) => {
         numberOfItems: action.cart.products.length,
       };
 
+    case CartActionTypes.REMOVE_CART:
+      removeCartFromLocalStorage();
+      return {
+        ...state,
+        cart: {},
+      };
+
     default:
       return state;
   }
+};
+
+const removeCartFromLocalStorage = () => {
+  let localStorageData = JSON.parse(localStorage.getItem("timewatch02"));
+
+  localStorageData.cart = {};
+  localStorageData.cartSubtotal = 0;
+  localStorageData.cartNumberOfItems = 0;
+
+  localStorage.setItem("timewatch02", JSON.stringify(localStorageData));
 };
 
 const computeSubtotal = (cart) => {

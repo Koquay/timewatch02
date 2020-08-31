@@ -1,5 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { Store } from "@ngrx/store";
+import { LogoutService } from "src/app/authentication/logout/logout.service";
 
 @Component({
   selector: "app-header",
@@ -10,10 +11,14 @@ export class HeaderComponent implements OnInit {
   private cartNumberOfItems;
   private cartSubtotal;
 
-  constructor(private store: Store<any>) {}
+  constructor(
+    private store: Store<any>,
+    private logoutService: LogoutService
+  ) {}
 
   ngOnInit() {
     this.getCartTally();
+    console.log("fasdjfdajdfjasjdajkadfkjdasfl;kdfsa;dsfdsa;");
   }
 
   private getCartTally = () => {
@@ -35,5 +40,10 @@ export class HeaderComponent implements OnInit {
         this.cartNumberOfItems = cart.cartNumberOfItems;
       }
     });
+  };
+
+  private logout = () => {
+    console.log("log out called");
+    this.logoutService.logout();
   };
 }

@@ -1,5 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { Store } from "@ngrx/store";
+import { timer } from "rxjs";
 import { CloseMessage } from "./message.actions";
 
 @Component({
@@ -24,13 +25,25 @@ export class MessageComponent implements OnInit {
       return state.message;
     };
 
-    const message$ = this.store.select(messageSelector);
+    let message$ = this.store.select(messageSelector);
 
     message$.subscribe((message) => {
       this.error = message.error;
       this.info = message.info;
       this.title = message.title;
       this.displayMessage = message.error || message.info;
+
+      if (this.displayMessage) {
+        this.clearMessageAfterTimeOut();
+      }
+    });
+  };
+
+  private clearMessageAfterTimeOut = () => {
+    let subscriber = timer(10000).subscribe(() => {
+      subscriber.unsubscribe();
+
+      this.closeMessage();
     });
   };
 

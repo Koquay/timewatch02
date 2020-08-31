@@ -1,5 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { Store } from "@ngrx/store";
+import { SetInfo } from "src/app/shared/components/message/message.actions";
 
 @Component({
   selector: "app-cart-summary",
@@ -11,12 +12,13 @@ export class CartSummaryComponent implements OnInit {
   private taxes;
   private subtotal;
   private total;
+  private emptyCartMessage = "Your cart is empty.";
 
   constructor(private store: Store<any>) {}
 
   ngOnInit() {
     this.getCart();
-    this.computePriceSummary();
+    // this.computePriceSummary();
   }
 
   private getCart = () => {
@@ -32,6 +34,19 @@ export class CartSummaryComponent implements OnInit {
       }
 
       this.cart = JSON.parse(JSON.stringify(cart));
+
+      console.log("this.cart", this.cart);
+
+      if (!cart._id) {
+        this.store.dispatch(new SetInfo(this.emptyCartMessage));
+        return;
+      }
+
+      if (!this.cart.products.length) {
+        this.store.dispatch(new SetInfo(this.emptyCartMessage));
+        return;
+      }
+
       this.computePriceSummary();
     });
   };

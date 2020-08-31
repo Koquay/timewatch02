@@ -58,13 +58,17 @@ body {
 
     #my-account-dropdown {
       display: none;
+      z-index: 100;
+      background-color: white;
+      width: 14rem;
 
       li {
         cursor: pointer;
       }
     }
 
-    &:hover {
+    &:hover,
+    &:focus {
       #my-account-dropdown {
         display: block;
       }

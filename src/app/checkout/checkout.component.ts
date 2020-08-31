@@ -1,7 +1,10 @@
 import { Component, OnInit } from "@angular/core";
 import { Store } from "@ngrx/store";
 import { StoreCheckoutData } from "./checkout.actions";
-import { SetError } from "../shared/components/message/message.actions";
+import {
+  SetError,
+  SetInfo,
+} from "../shared/components/message/message.actions";
 import { CheckoutService } from "./checkout.service";
 import { SetActiveNav } from "../shared/components/header/header.actions";
 
@@ -78,15 +81,30 @@ export class CheckoutComponent implements OnInit {
         this.cart = cart;
       }
 
+      if (!this.cart._id) {
+        this.store.dispatch(
+          new SetInfo("Your cart is empty. Please enter items to proceed.")
+        );
+        return;
+      }
+
       if (!this.cart.products.length) {
         this.store.dispatch(
-          new SetError("Your cart is empty. Please enter items to proceed.")
+          new SetInfo("Your cart is empty. Please enter items to proceed.")
         );
+        return;
       }
     });
   };
 
   private placeOrder = () => {
+    if (!this.cart._id) {
+      this.store.dispatch(
+        new SetError("Your cart is empty. Please enter items to proceed.")
+      );
+      return;
+    }
+
     if (!this.cart.products.length) {
       this.store.dispatch(
         new SetError("Your cart is empty. Please enter items to proceed.")
