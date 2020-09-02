@@ -15,8 +15,8 @@
           ></i
         ></a>
         <ul class="list-unstyled" id="my-account-dropdown">
-          <li class="mb-2" [routerLink]="['/']">Log In</li>
-          <li class="mb-2" (click)="logout()">Log out</li>
+          <li class="mb-2" [routerLink]="['/']" *ngIf="!loggedIn">Log In</li>
+          <li class="mb-2" (click)="logout()" *ngIf="loggedIn">Log out</li>
           <li class="mb-2">Register</li>
         </ul>
       </li>

@@ -11,6 +11,7 @@ import {
   SetError,
   SetInfo,
 } from "src/app/shared/components/message/message.actions";
+import { of, Observable } from "rxjs";
 
 @Injectable({
   providedIn: "root",
@@ -44,4 +45,18 @@ export class LoginService {
         })
       );
   };
+
+  public getLoggedIn = new Observable((subscriber) => {
+    const loggedInSelector = (state) => {
+      return state.authentication.loggedIn;
+    };
+
+    const loggedIn$ = this.store.select(loggedInSelector);
+    let loggedIn: boolean;
+
+    loggedIn$.subscribe((isLoggedIn) => {
+      loggedIn = isLoggedIn;
+      subscriber.next(loggedIn);
+    });
+  });
 }

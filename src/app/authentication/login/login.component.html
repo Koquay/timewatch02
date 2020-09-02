@@ -1,10 +1,10 @@
 <app-header></app-header>
 <app-message></app-message>
-<div class="container loginForm" *ngIf="!loading">
-  <form>
+<div class="container loginForm d-flex justify-content-center" *ngIf="!loading">
+  <form class="authentication-form">
     <div class="form-row d-flex d-lg-flex justify-content-center">
       <div class="col-12 d-lg-flex col-md-6">
-        <label class="col-form-label">Email</label>
+        <label class="col-form-label font-weight-bold">Email</label>
       </div>
     </div>
     <div class="form-row d-flex d-lg-flex justify-content-center mb-2">
@@ -27,7 +27,7 @@
     </div>
     <div class="form-row d-flex d-lg-flex justify-content-center">
       <div class="col-12 d-lg-flex col-md-6">
-        <label class="col-form-label">Password</label>
+        <label class="col-form-label font-weight-bold">Password</label>
       </div>
     </div>
     <div class="form-row d-flex d-lg-flex justify-content-center mb-2">

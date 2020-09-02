@@ -42,3 +42,7 @@ a {
 .spinner {
   width: 10rem;
 }
+
+.button:focus {
+  outline: none;
+}

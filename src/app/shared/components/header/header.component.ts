@@ -1,6 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { Store } from "@ngrx/store";
 import { LogoutService } from "src/app/authentication/logout/logout.service";
+import { LoginService } from "src/app/authentication/login/login.service";
 
 @Component({
   selector: "app-header",
@@ -10,16 +11,24 @@ import { LogoutService } from "src/app/authentication/logout/logout.service";
 export class HeaderComponent implements OnInit {
   private cartNumberOfItems;
   private cartSubtotal;
+  private loggedIn: boolean = false;
 
   constructor(
     private store: Store<any>,
-    private logoutService: LogoutService
+    private logoutService: LogoutService,
+    private loginService: LoginService
   ) {}
 
   ngOnInit() {
     this.getCartTally();
-    console.log("fasdjfdajdfjasjdajkadfkjdasfl;kdfsa;dsfdsa;");
+    this.getLoggedIn();
   }
+
+  private getLoggedIn = () => {
+    this.loginService.getLoggedIn.subscribe((loggedIn: boolean) => {
+      this.loggedIn = loggedIn;
+    });
+  };
 
   private getCartTally = () => {
     const cartSelector = (state) => {
