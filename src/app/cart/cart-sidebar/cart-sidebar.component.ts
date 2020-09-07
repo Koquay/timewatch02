@@ -1,5 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { Store } from "@ngrx/store";
+import { CartService } from "../cart.service";
 
 @Component({
   selector: "app-cart-sidebar",
@@ -11,11 +12,16 @@ export class CartSidebarComponent implements OnInit {
   private bestseller;
   private special;
 
-  constructor(private store: Store<any>) {}
+  constructor(private store: Store<any>, private cartService: CartService) {}
 
   ngOnInit() {
     this.getProductByCategories();
   }
+
+  private addToCart = (productId) => {
+    const payload = { quantity: 1, productId };
+    this.cartService.addToCart(payload, this.setLoading).subscribe();
+  };
 
   private getProductByCategories = () => {
     const productSelector = (state) => {
@@ -33,5 +39,9 @@ export class CartSidebarComponent implements OnInit {
       this.bestseller = productsByCategory.bestseller.products;
       this.special = productsByCategory.special.products;
     });
+  };
+
+  public setLoading = (value) => {
+    // this.loading = value;
   };
 }
