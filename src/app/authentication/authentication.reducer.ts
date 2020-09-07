@@ -8,7 +8,7 @@ export const AuthenticationReducer = (
   state = initialState,
   action: AuthenticationActionUnion
 ) => {
-  console.log("action", action);
+  // console.log("action", action);
   switch (action.type) {
     case LoginActionTypes.SET_LOGGED_IN:
       addLoggedInoLocalStorage(true);
@@ -26,7 +26,7 @@ export const AuthenticationReducer = (
 
     case LoginActionTypes.INIT_LOGGED_IN:
       const loggedIn = initLoggedInoLocalStorage();
-      console.log("loggedIn", loggedIn);
+      // console.log("loggedIn", loggedIn);
       return {
         ...state,
         loggedIn: loggedIn,

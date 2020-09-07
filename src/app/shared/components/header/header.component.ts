@@ -52,7 +52,6 @@ export class HeaderComponent implements OnInit {
   };
 
   private logout = () => {
-    console.log("log out called");
     this.logoutService.logout();
   };
 }

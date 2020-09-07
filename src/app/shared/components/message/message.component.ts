@@ -40,7 +40,7 @@ export class MessageComponent implements OnInit {
   };
 
   private clearMessageAfterTimeOut = () => {
-    let subscriber = timer(10000).subscribe(() => {
+    let subscriber = timer(40000).subscribe(() => {
       subscriber.unsubscribe();
 
       this.closeMessage();

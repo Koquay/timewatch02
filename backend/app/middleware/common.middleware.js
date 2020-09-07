@@ -10,7 +10,6 @@ process.env.DIST = path.join(__dirname, "../../../dist/timewatch02");
 process.env.INDEX = path.join(process.env.DIST, "/index.html");
 
 module.exports = (app) => {
-  console.log(chalk.blue("COMMON.MIDDLEWARE"));
   app.use(bodyParser.json());
   app.use(
     bodyParser.urlencoded({

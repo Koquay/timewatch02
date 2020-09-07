@@ -9,9 +9,9 @@ module.exports = async () => {
       useUnifiedTopology: true,
     });
 
-    console.log(chalk.blue("*** CONNECTED TO MONGO ***"));
+    // console.log(chalk.blue("*** CONNECTED TO MONGO ***"));
   } catch (error) {
-    console.log(chalk.red("*** CONNECT TO MONGO FAILED ***"));
+    // console.log(chalk.red("*** CONNECT TO MONGO FAILED ***"));
     throw error;
   }
 };

@@ -12,7 +12,6 @@ export class LogoutService {
   constructor(private store: Store<any>, private router: Router) {}
 
   public logout = () => {
-    console.log("log out");
     cookie.remove("token");
 
     this.store.dispatch(new SetLoggedOut());

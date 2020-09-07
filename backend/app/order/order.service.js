@@ -7,7 +7,7 @@ const jwt = require("jsonwebtoken");
 
 exports.placeOrder = async (req, res) => {
   const { orderData } = req.body;
-  console.log("orderData", orderData);
+  // console.log("orderData", orderData);
 
   if (!("authorization" in req.headers)) {
     return res.status(422).send("Please log in to place your order.");
@@ -24,7 +24,7 @@ exports.placeOrder = async (req, res) => {
       model: "Product",
     });
 
-    console.log(cart);
+    // console.log(cart);
 
     const { cartTotal, stripeTotal } = calculateCartTotal(cart.products);
 
@@ -43,7 +43,7 @@ exports.placeOrder = async (req, res) => {
     res.status(201).json(returnData);
   } catch (error) {
     res.status(500).send("There was a problem placing your order");
-    console.log(error);
+    // console.log(error);
   }
 };
 

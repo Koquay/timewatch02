@@ -10,7 +10,11 @@
         <span class="d-block">{{product.name}}</span
         ><span class="d-block font-weight-bold"
           >{{product.price | currency:'USD':'symbol-narrow':'1.0-0'}}</span
-        ><a (click)="addToCart(product._id)">Add to Cart</a>
+        >
+
+        <a (click)="addToCart(product._id)" class="add-to-cart-link"
+          >Add to Cart</a
+        >
       </div>
     </div>
   </div>
@@ -27,7 +31,10 @@
         <span class="d-block">{{product.name}}</span
         ><span class="d-block font-weight-bold"
           >{{product.price | currency:'USD':'symbol-narrow':'1.0-0'}}</span
-        ><a (click)="addToCart(product._id)">Add to Cart</a>
+        >
+        <a (click)="addToCart(product._id)" class="add-to-cart-link"
+          >Add to Cart</a
+        >
       </div>
     </div>
   </div>
@@ -44,7 +51,10 @@
         <span class="d-block">{{product.name}}</span
         ><span class="d-block font-weight-bold"
           >{{product.price | currency:'USD':'symbol-narrow':'1.0-0'}}</span
-        ><a (click)="addToCart(product._id)">Add to Cart</a>
+        >
+        <a (click)="addToCart(product._id)" class="add-to-cart-link"
+          >Add to Cart</a
+        >
       </div>
     </div>
   </div>

@@ -38,7 +38,7 @@ const computeSubtotal = (cart) => {
   let subtotal = cart.products.reduce((acc, item) => {
     return (acc += item.product.price * item.quantity);
   }, 0);
-  console.log("subtotal", subtotal);
+
   return subtotal;
 };
 

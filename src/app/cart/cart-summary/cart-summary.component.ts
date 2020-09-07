@@ -35,7 +35,7 @@ export class CartSummaryComponent implements OnInit {
 
       this.cart = JSON.parse(JSON.stringify(cart));
 
-      console.log("this.cart", this.cart);
+      // console.log("this.cart", this.cart);
 
       if (!cart._id) {
         this.store.dispatch(new SetInfo(this.emptyCartMessage));
